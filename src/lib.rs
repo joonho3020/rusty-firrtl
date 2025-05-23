@@ -414,6 +414,20 @@ impl Expr {
             Err(format!("Invalid number format: {}", s))
         }
     }
+
+    pub fn parse_radixint_chirrtl(s: &str) -> Result<Int, String> {
+        if let Some(num) = s.strip_prefix("0b") {
+            Int::from_str_radix(num, 2).map_err(|e| e.to_string())
+        } else if let Some(num) = s.strip_prefix("0o") {
+            Int::from_str_radix(num, 8).map_err(|e| e.to_string())
+        } else if let Some(num) = s.strip_prefix("0d") {
+            Int::from_str_radix(num, 10).map_err(|e| e.to_string())
+        } else if let Some(num) = s.strip_prefix("0h") {
+            Int::from_str_radix(num, 16).map_err(|e| e.to_string())
+        } else {
+            Err(format!("Invalid number format: {}", s))
+        }
+    }
 }
 
 impl Display for Expr {
