@@ -533,7 +533,7 @@ impl Display for TypeAggregate {
                 write!(f, "}}")
             }
             Self::Array(tpe, idx) => {
-                write!(f, "{}[{}]", tpe, idx)
+                write!(f, "{}[{}]", tpe.as_ref(), idx)
             }
         }
     }
