@@ -369,7 +369,7 @@ impl std::fmt::Display for PrimOp1Expr2Int {
 
 pub type Exprs = Vec<Box<Expr>>;
 
-fn fmt_exprs(exprs: &Exprs) -> String {
+pub fn fmt_exprs_as_msg(exprs: &Exprs) -> String {
     let mut ret = "".to_string();
     let len = exprs.len();
     for (id, e) in exprs.iter().enumerate() {
@@ -690,9 +690,9 @@ impl Display for Stmt {
             Stmt::Printf(name_opt, clk, clk_val, msg, fields_opt, info) => {
                 if let Some(fields) = fields_opt {
                     if let Some(name) = name_opt {
-                        write!(f, "printf({}, {}, {}, {}) : {} {}", clk, clk_val, msg, fmt_exprs(fields), name, info)
+                        write!(f, "printf({}, {}, {}, {}) : {} {}", clk, clk_val, msg, fmt_exprs_as_msg(fields), name, info)
                     } else {
-                        write!(f, "printf({}, {}, {}, {}) : {}", clk, clk_val, msg, fmt_exprs(fields), info)
+                        write!(f, "printf({}, {}, {}, {}) : {}", clk, clk_val, msg, fmt_exprs_as_msg(fields), info)
                     }
                 } else {
                     if let Some(name) = name_opt {
