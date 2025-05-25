@@ -4,7 +4,7 @@ use num_traits::{FromPrimitive, Num};
 use std::str::FromStr;
 
 #[derive(Clone, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub struct Int(BigInt);
+pub struct Int(pub BigInt);
 
 impl Int {
     pub fn to_u32(&self) -> u32 {
