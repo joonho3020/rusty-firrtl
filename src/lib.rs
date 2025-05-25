@@ -639,7 +639,7 @@ pub enum Stmt {
     Printf(Option<Identifier>, Expr, Expr, String, Option<Exprs>, Info),
     Assert(Option<Identifier>, Expr, Expr, Expr, String, Info),
     Stop(Identifier, Expr, Expr, Int, Info),
-    Memory(Type, u32, u32, u32, MemoryPorts, ChirrtlMemoryReadUnderWrite, Info),
+    Memory(Identifier, Type, u32, u32, u32, MemoryPorts, ChirrtlMemoryReadUnderWrite, Info),
 // Stop(Expr, Expr, u64, Info),
 // Define(Define, Reference, Probe, Info),
 // Define(Define, Reference, Expr, Probe, Info),
@@ -727,7 +727,7 @@ impl Display for Stmt {
             Stmt::Stop(name, clk, cond, x, info) => {
                 writeln!(f, "stop({}, {}, {}) : {} {}", clk, cond, x, name, info)
             }
-            Stmt::Memory(tpe, depth, rlat, wlat, ports, ruw, info) => {
+            Stmt::Memory(name, tpe, depth, rlat, wlat, ports, ruw, info) => {
                 unimplemented!();
             }
         }
